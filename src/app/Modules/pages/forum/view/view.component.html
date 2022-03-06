@@ -1,0 +1,53 @@
+<!-- Begin Page Content -->
+<div class="container-fluid">
+
+  <!-- Page Heading -->
+  <h1 class="h3 mb-2 text-gray-800">Forum Details</h1>
+
+<!-- Dropdown Card Example -->
+<div class="card shadow mb-4">
+  <!-- Card Header - Dropdown -->
+  <div
+      class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+      <h6 class="m-0 font-weight-bold text-primary">Forum Details</h6>
+      <div class="dropdown no-arrow">
+          <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+              aria-labelledby="dropdownMenuLink" *ngIf="forumDetail">
+              <div class="dropdown-header" >Actions:</div>
+              <a class="dropdown-item" (click)="updateStatus(forumDetail._id)">Accept</a>
+          </div>
+      </div>
+  </div>
+  <!-- Card Body -->
+  <div class="card-body" *ngIf="forumDetail">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <tbody>
+          <tr>
+            <td>Title:-</td>
+            <td>{{forumDetail?.title}}</td>
+          </tr>
+          <tr>
+            <td>Category:-</td>
+            <td>{{forumDetail?.category[0]?.name}}</td>
+          </tr>
+          <tr>
+            <td>Created By:-</td>
+            <td>{{forumDetail?.user[0]?.firstname}} {{forumDetail?.user[0]?.lastname}}</td>
+          </tr>
+          <tr>
+            <td>Body:-</td>
+            <td><div [innerHTML]="forumDetail.body"></div></td>
+          </tr>
+          <tr *ngIf="forumDetail.image">
+            <td>Photo:-</td>
+            <td><img [src]="forumDetail.image | defualtImage:forumDetail.image" width="300"></td>
+          </tr>
+        </tbody>
+      </table>
+  </div>
+</div>
+</div>
